@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: vehicleappwithannotations
+  labels:
+    name: vehicleappwithannotations
+  annotations:
+    createdBy: Tooba Malaika
+    email: toobachuhan92@gmail.com
+    fbUrl: https://www.facebook.com/toobamalaika/ 
+    mediumUrl: https://medium.com/@toobamalaika
+spec:
+  containers:
+  - name: vehicleappwithannotations
+    image: toobamalaika/vehicles-today-app
+    ports:
+      - containerPort: 80

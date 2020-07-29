@@ -1,0 +1,29 @@
+kind: Job
+apiVersion: batch/v1
+metadata:
+  name: jobpoddocker
+spec:
+  template:
+    spec:
+      containers:
+      - name: jobpodcontainer
+        image: docker/whalesay
+        command: ["cowsay","This is simple kubernetes Job"]
+      restartPolicy: Never
+  backoffLimit: 5
+  activeDeadlineSeconds: 100
+
+# apiVersion: batch/v1
+# kind: Job
+# metadata:
+#   name: jobpodanother
+# spec:
+#   backoffLimit: 5
+#   activeDeadlineSeconds: 100
+#   template:
+#     spec:
+#       containers:
+#       - name: jobpodcontainer
+#         image: perl
+#         command: ["perl",  "-Mbignum=bpi", "-wle", "print bpi(2000)"]
+#       restartPolicy: Never

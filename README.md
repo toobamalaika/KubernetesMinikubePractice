@@ -1,1 +1,1 @@
-# KubermetesMinikubePractice
+# Kubermetes Minikube Practice

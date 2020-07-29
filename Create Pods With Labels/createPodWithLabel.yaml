@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: vehicleappwithlabel
+  labels:
+    type: backend
+    env: production 
+spec:
+  containers:
+  - name: vehicleappwithlabelcontainer
+    image: toobamalaika/vehicles-today-app
+    ports:
+      - containerPort: 80

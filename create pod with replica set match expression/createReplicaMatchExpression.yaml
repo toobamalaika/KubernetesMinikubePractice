@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: vehicle-replica-set-metchexptression
+spec:
+  replicas: 3
+  selector:
+    matchExpressions:
+    - key: app
+      operator: In
+      values:
+      - appwithreplicasetmatchexpression
+  template:
+    metadata:
+      name: appwithreplicasetmatchexpression
+      labels:
+        app: appwithreplicasetmatchexpression
+    spec:
+      containers:
+        - name: appwithreplicasetmatchexpressioncontainer
+          image: toobamalaika/vehicles-today-app:latest
+          ports:
+            - containerPort: 80
