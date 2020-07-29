@@ -1,1 +1,1 @@
-# Kubermetes Minikube Practice
+# Kubernetes Minikube Practice
