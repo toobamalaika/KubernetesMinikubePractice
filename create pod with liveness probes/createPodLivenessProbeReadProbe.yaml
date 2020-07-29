@@ -1,0 +1,88 @@
+# Simple exec probe 
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pod-with-liveness-probe-read-exec
+  labels:
+    name: pod-with-liveness-probe-read-exec
+spec:
+  containers:
+  - name: pod-with-liveness-probe-read-exec-container
+    image: toobamalaika/vehicles-today-app:latest
+    ports:
+      - containerPort: 80
+    readinessProbe:
+        exec:
+          command:
+            - cat
+            - ls
+
+# # simple exec probe with some create problem with command that is not available in directory
+# apiVersion: v1
+# kind: Pod
+# metadata:
+#   name: pod-with-liveness-probe-read-some-error
+#   labels:
+#     name: pod-with-liveness-probe-read-some-error
+# spec:
+#   containers:
+#   - name: pod-with-liveness-probe-read-some-error-container
+#     image: toobamalaika/vehicles-today-app:latest
+#     ports:
+#       - containerPort: 80
+#     readinessProbe:
+#         exec:
+#           command:
+#             - cat
+#             - /tmp/toobamalaika.txt
+#         failureThreshold: 10
+#         initialDelaySeconds: 120
+#         periodSeconds: 120
+#         successThreshold: 1
+#         timeoutSeconds: 1
+
+# # sample of tcp socket
+# apiVersion: v1
+# kind: Pod
+# metadata:
+#   name: pod-with-liveness-probe-read-tcpsocket
+#   labels:
+#     name: pod-with-liveness-probe-read-tcpsocket
+# spec:
+#   containers:
+#   - name: pod-with-liveness-probe-read-tcpsocket-container
+#     image: toobamalaika/vehicles-today-app:latest
+#     ports:
+#       - containerPort: 80
+#     readinessProbe:
+#         tcpSocket:
+#           port: 80
+#         failureThreshold: 10
+#         initialDelaySeconds: 120
+#         periodSeconds: 120
+#         successThreshold: 1
+#         timeoutSeconds: 1
+
+
+# # sample of HHTPGet
+# apiVersion: v1
+# kind: Pod
+# metadata:
+#   name: pod-with-liveness-probe-read-httpget
+#   labels:
+#     name: pod-with-liveness-probe-read-httpget
+# spec:
+#   containers:
+#   - name: pod-with-liveness-probe-read-httpget-container
+#     image: toobamalaika/vehicles-today-app:latest
+#     ports:
+#       - containerPort: 80
+#     readinessProbe:
+#       httpGet:
+#         port: 80
+#         path: /
+#       failureThreshold: 10
+#       initialDelaySeconds: 120
+#       periodSeconds: 120
+#       successThreshold: 1
+#       timeoutSeconds: 1

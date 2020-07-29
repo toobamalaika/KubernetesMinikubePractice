@@ -1,0 +1,42 @@
+# apiVersion: batch/v1beta1
+# kind: CronJob
+# metadata:
+#   name: cronjobpod
+# spec:
+#   schedule: "*/1 * * * *"
+#   jobTemplate:
+#     spec:
+#       template:
+#         metadata:
+#           labels:
+#             app: cron-job-schedule-another
+#         spec:
+#           containers:
+#           - name: cronjobpodcontainer
+#             image: docker/whalesay
+#             command: ["cowsay", "This is Cron Job Kubernetes Cluster"]
+#           restartPolicy: OnFailure
+
+
+
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: cronjobpodhello
+spec:
+  schedule: "*/1 * * * *"
+  jobTemplate:
+    spec:
+      template:
+        metadata:
+          labels:
+            app: cron-job-schedule
+        spec:
+          containers:
+          - name: hello
+            image: busybox
+            args:
+            - /bin/sh
+            - -c
+            - date; echo This is Cron Job Kubernetes Cluster
+          restartPolicy: OnFailure

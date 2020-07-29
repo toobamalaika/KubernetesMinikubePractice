@@ -1,0 +1,93 @@
+# Simple exec probe 
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pod-with-liveness-probe-exec
+  labels:
+    name: pod-with-liveness-probe-exec
+spec:
+  containers:
+  - name: pod-with-liveness-probe-exec-container
+    image: toobamalaika/vehicles-today-app:latest
+    ports:
+      - containerPort: 80
+    livenessProbe:
+        exec:
+          command:
+            - cat
+            - ls
+        failureThreshold: 10
+        initialDelaySeconds: 120
+        periodSeconds: 120
+        successThreshold: 1
+        timeoutSeconds: 1
+
+# # simple exec probe with some create problem with command that is not available in directory
+# apiVersion: v1
+# kind: Pod
+# metadata:
+#   name: pod-with-liveness-probe-some-error
+#   labels:
+#     name: pod-with-liveness-probe-some-error
+# spec:
+#   containers:
+#   - name: pod-with-liveness-probe-some-error-container
+#     image: toobamalaika/vehicles-today-app:latest
+#     ports:
+#       - containerPort: 80
+#     livenessProbe:
+#         exec:
+#           command:
+#             - cat
+#             - /tmp/toobamalaika.txt
+#         failureThreshold: 10
+#         initialDelaySeconds: 120
+#         periodSeconds: 120
+#         successThreshold: 1
+#         timeoutSeconds: 1
+
+# # sample of tcp socket
+# apiVersion: v1
+# kind: Pod
+# metadata:
+#   name: pod-with-liveness-probe-tcpsocket
+#   labels:
+#     name: pod-with-liveness-probe-tcpsocket
+# spec:
+#   containers:
+#   - name: pod-with-liveness-probe-tcpsocket-container
+#     image: toobamalaika/vehicles-today-app:latest
+#     ports:
+#       - containerPort: 80
+#     livenessProbe:
+#         tcpSocket:
+#           port: 80
+#         failureThreshold: 10
+#         initialDelaySeconds: 120
+#         periodSeconds: 120
+#         successThreshold: 1
+#         timeoutSeconds: 1
+
+
+# # sample of HHTPGet
+# apiVersion: v1
+# kind: Pod
+# metadata:
+#   name: pod-with-liveness-probe-httpget
+#   labels:
+#     name: pod-with-liveness-probe-httpget
+# spec:
+#   containers:
+#   - name: pod-with-liveness-probe-httpget-container
+#     image: toobamalaika/vehicles-today-app:latest
+#     ports:
+#       - containerPort: 80
+#     livenessProbe:
+#       httpGet:
+#         port: 80
+#         path: /
+#       failureThreshold: 10
+#       initialDelaySeconds: 120
+#       periodSeconds: 120
+#       successThreshold: 1
+#       timeoutSeconds: 1

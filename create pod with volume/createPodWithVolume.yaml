@@ -1,0 +1,25 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pod-with-volume
+  labels:
+    name: pod-with-volume
+spec:
+  volumes:
+    - name: shared-directory
+      emptyDir: {}
+  containers:
+  - name: pod-with-volume-container-one
+    image: toobamalaika/vehicles-today-app:latest
+    ports:
+      - containerPort: 80
+    volumeMounts:
+      - mountPath: /data
+        name: shared-directory
+  - name: pod-with-volume-container-two
+    image: aamirpinger/logfile_nodejs
+    ports:
+      - containerPort: 80
+    volumeMounts:
+      - mountPath: /another-data/container-two
+        name: shared-directory
